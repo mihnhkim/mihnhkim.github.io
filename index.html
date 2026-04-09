@@ -256,10 +256,185 @@
     .filter-btn:hover, .filter-btn.active {
       color:var(--color-text); border-color:var(--color-text);
     }
-    .works-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));
-      gap:var(--space-6);
+
+    /* ─── 시집 소개 ─── */
+    .sijib-intro {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-10);
+      margin-bottom: var(--space-12);
+    }
+    .sijib-intro__title-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-6);
+    }
+    .sijib-intro__title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 300;
+      letter-spacing: .01em;
+      line-height: 1.15;
+      color: var(--color-text);
+    }
+    .sijib-intro__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-faint);
+      letter-spacing: .06em;
+      font-style: italic;
+    }
+    .sijib-intro__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      max-width: 68ch;
+    }
+    .sijib-intro__body p {
+      font-size: var(--text-base);
+      line-height: 1.85;
+      color: var(--color-text-muted);
+      max-width: 68ch;
+    }
+    .sijib-intro__note {
+      font-style: italic;
+      color: var(--color-text-faint) !important;
+      font-size: var(--text-sm) !important;
+    }
+
+    /* ─── 판본 아카이브 헤더 ─── */
+    .archive-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .archive-header__title {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: .1em;
+      color: var(--color-text);
+    }
+    .archive-header__desc {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      max-width: none;
+    }
+
+    /* ─── 판본 갤러리 ─── */
+    .editions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-6) var(--space-5);
+    }
+    .edition-card {
+      cursor: default;
+    }
+    .edition-card__cover {
+      aspect-ratio: 3/4;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-3);
+    }
+    .edition-card__img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 타이포그래피 커버 플레이스홀더 */
+    .edition-cover {
+      width: 100%; height: 100%;
+      background: var(--color-text);
+      color: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--space-4);
+      font-family: var(--font-display);
+      transition: opacity .3s var(--ease-out);
+    }
+    .edition-cover--dim {
+      background: var(--color-surface-offset-2);
+    }
+    .edition-card--upcoming .edition-cover--dim {
+      opacity: .55;
+    }
+    .edition-cover__num {
+      font-size: var(--text-xs);
+      font-family: var(--font-body);
+      font-weight: 500;
+      letter-spacing: .1em;
+      opacity: .6;
+    }
+    .edition-cover--dim .edition-cover__num {
+      color: var(--color-text-faint);
+    }
+    .edition-cover__title {
+      font-size: var(--text-sm);
+      font-weight: 300;
+      line-height: 1.4;
+      letter-spacing: -.01em;
+    }
+    .edition-cover--dim .edition-cover__title {
+      color: var(--color-text-faint);
+    }
+    .edition-cover__byline {
+      font-size: var(--text-xs);
+      font-family: var(--font-body);
+      font-weight: 400;
+      letter-spacing: .06em;
+      opacity: .45;
+    }
+
+    /* 카드 메타 */
+    .edition-card__info { padding: 0; }
+    .edition-card__name {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+      letter-spacing: .02em;
+    }
+    .edition-card--upcoming .edition-card__name {
+      color: var(--color-text-faint);
+    }
+    .edition-card__status {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+    .edition-specs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .edition-specs li {
+      font-size: var(--text-xs);
+      display: flex;
+      gap: var(--space-2);
+      color: var(--color-text-muted);
+      max-width: none;
+      text-wrap: unset;
+    }
+    .spec-k {
+      color: var(--color-text-faint);
+      min-width: 4em;
+      flex-shrink: 0;
+    }
+    .spec-v { color: var(--color-text-muted); }
+
+    /* 기타 works grid (에세이/사진/디자인) */
+    .works-others {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(260px,100%),1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-12);
     }
     .work-card { cursor:pointer; border-radius:var(--radius-sm); overflow:hidden; }
     .work-card__img {
@@ -281,6 +456,22 @@
       font-weight:300; letter-spacing:.04em; color:var(--color-text); margin-bottom:var(--space-1);
     }
     .work-card__meta { font-size:var(--text-xs); color:var(--color-text-muted); letter-spacing:.08em; }
+
+    /* 필터 동작 */
+    .sijib-section { display: block; }
+    .works-others { display: grid; }
+    [data-works-filter="poem"] .works-others { display: none; }
+    [data-works-filter="essay"] .sijib-section,
+    [data-works-filter="photo"] .sijib-section,
+    [data-works-filter="design"] .sijib-section { display: none; }
+    [data-works-filter="essay"] .works-others .work-card:not([data-category="essay"]),
+    [data-works-filter="photo"] .works-others .work-card:not([data-category="photo"]),
+    [data-works-filter="design"] .works-others .work-card:not([data-category="design"]) { display: none; }
+
+    @media (max-width: 640px) {
+      .editions-grid { grid-template-columns: repeat(auto-fill, minmax(min(140px,100%),1fr)); gap: var(--space-4); }
+      .sijib-intro__body { gap: var(--space-4); }
+    }
 
     /* ═══════════════════════════════════ 단어들 */
     #words { background:var(--color-bg); padding-bottom:var(--space-24); }
@@ -371,6 +562,143 @@
       transition:color var(--transition);
     }
     .site-footer__links a:hover { color:var(--color-text); }
+  
+    /* ─── 소개 카드 ─── */
+    .sijib-intro-card {
+      position: relative;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8) var(--space-8) var(--space-10);
+      max-width: 72ch;
+    }
+    .sijib-intro__lang-btn {
+      position: absolute;
+      bottom: var(--space-5);
+      right: var(--space-6);
+      font-size: var(--text-xs);
+      font-family: var(--font-body);
+      letter-spacing: .12em;
+      color: var(--color-text-faint);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-sm);
+      padding: 3px var(--space-3);
+      transition: color var(--transition), border-color var(--transition);
+      background: none;
+      cursor: pointer;
+    }
+    .sijib-intro__lang-btn:hover,
+    .sijib-intro__lang-btn.is-en { color: var(--color-text); border-color: var(--color-border); }
+    .sijib-intro__lang[hidden] { display: none; }
+
+    /* 판본 카드 — 클릭 가능 표시 */
+    .edition-card[data-open-edetail] { cursor: pointer; }
+    .edition-card[data-open-edetail]:hover .edition-cover,
+    .edition-card[data-open-edetail]:focus-visible .edition-cover { opacity: .82; }
+    .edition-card[data-open-edetail]:hover .edition-card__name,
+    .edition-card[data-open-edetail]:focus-visible .edition-card__name { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ─── 판본 상세 모달 ─── */
+    .edition-detail { display: none; }
+    .edition-detail:not([hidden]) {
+      display: block;
+      position: fixed; inset: 0; z-index: 1000;
+    }
+    .edetail__overlay {
+      position: absolute; inset: 0;
+      background: oklch(from var(--color-text) l c h / 0.45);
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+    }
+    .edetail__panel {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(900px, calc(100vw - var(--space-8)));
+      max-height: calc(100vh - var(--space-16));
+      overflow-y: auto;
+      background: var(--color-bg);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8) var(--space-8) var(--space-10);
+      -webkit-overflow-scrolling: touch;
+    }
+    .edetail__close {
+      position: absolute;
+      top: var(--space-5); right: var(--space-5);
+      color: var(--color-text-muted);
+      padding: var(--space-2);
+      border-radius: var(--radius-sm);
+    }
+    .edetail__close:hover { color: var(--color-text); }
+    .edetail__inner {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--space-10);
+      align-items: start;
+    }
+    .edetail__cover {
+      aspect-ratio: 3/4; width: 100%;
+      border-radius: var(--radius-sm); overflow: hidden;
+    }
+    .edetail__cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .edetail__info { display: flex; flex-direction: column; gap: var(--space-6); }
+    .edetail__header { display: flex; flex-direction: column; gap: var(--space-1); }
+    .edetail__title-row { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+    .edetail__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 300;
+      color: var(--color-text);
+    }
+    .edetail__placeholder-badge {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-sm);
+      padding: 2px var(--space-2);
+      letter-spacing: .06em;
+    }
+    .edetail__book-title {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+    .edetail__specs { margin-top: 0; }
+    .edetail__desc {
+      position: relative;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-6) var(--space-6) var(--space-10);
+    }
+    .edetail__desc-body p {
+      font-size: var(--text-base);
+      line-height: 1.85;
+      color: var(--color-text-muted);
+      max-width: 52ch;
+    }
+    .edetail__desc-body[hidden] { display: none; }
+    .edetail__lang-btn {
+      position: absolute;
+      bottom: var(--space-4); right: var(--space-5);
+      font-size: var(--text-xs);
+      letter-spacing: .12em;
+      color: var(--color-text-faint);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-sm);
+      padding: 3px var(--space-3);
+      transition: color var(--transition), border-color var(--transition);
+      cursor: pointer;
+      background: none;
+    }
+    .edetail__lang-btn:hover,
+    .edetail__lang-btn.is-en { color: var(--color-text); border-color: var(--color-border); }
+
+    @media (max-width: 600px) {
+      .edetail__inner { grid-template-columns: 1fr; }
+      .edetail__cover { max-width: 160px; }
+      .edetail__panel { padding: var(--space-6) var(--space-5) var(--space-8); }
+    }
   </style>
 </head>
 <body>
@@ -490,6 +818,8 @@
     <header class="page-header">
       <h1>WORKS</h1>
     </header>
+
+    <!-- ══════════ 시집 섹션 ══════════ -->
     <div class="works-filter" role="group" aria-label="카테고리 필터">
       <button class="filter-btn active" data-filter="all">전체</button>
       <button class="filter-btn" data-filter="poem">시집</button>
@@ -497,16 +827,270 @@
       <button class="filter-btn" data-filter="photo">사진</button>
       <button class="filter-btn" data-filter="design">디자인</button>
     </div>
-    <div class="works-grid" id="worksGrid">
-      <article class="work-card" data-category="poem">
-        <div class="work-card__img">
-          <div class="work-card__placeholder"><span>시집</span></div>
+
+    <!-- 시집 상세 섹션 (filter=poem 또는 all일 때 보임) -->
+    <div class="sijib-section" id="sijibSection" data-category="poem">
+
+      <!-- 시집 소개 -->
+      <div class="sijib-intro">
+        <!-- 소개 카드 -->
+        <div class="sijib-intro-card">
+          <div class="sijib-intro__title-row">
+            <h2 class="sijib-intro__title">『신선한 시 있어요』</h2>
+            <span class="sijib-intro__sub">For Sale: Fresh Poems</span>
+          </div>
+          <div class="sijib-intro__body" id="sijibIntroBody">
+            <!-- 한글 -->
+            <div class="sijib-intro__lang" data-intro-ko>
+              <p>『신선한 시 있어요』는 완결된 사물이 아니다. 이 책은 살아 움직이는 원고이며, 계속해서 진화하는 기록이다. 모든 책은 시인이 직접 인쇄하고 제본한다. 그 순간의 상황과 컨디션, 손끝의 선택에 따라, 각 권마다 감각과 구조, 마감의 차이가 남는다. 이 책은 가내수공업 방식으로 제작돼 그 때의 상황과 컨디션, 재료에 따라 표지와 판본의 세부가 달라집니다. 모든 책은 유일한 책입니다.</p>
+              <p>물성의 경계 또한 열려 있다. 『신선한 시 있어요』는 동일한 복제와 빠른 생산을 거부한다. 대신 지극히 비효율적이고 일률적이지 않으며 느린 속도의 수작업을 택한다. 그러나 동시에 독자는 온라인 링크를 통해 최신 개정 내용이 실시간으로 반영되는 시집을 확인할 수 있다. 종이책의 아날로그 감각과 디지털 접근성이 공존하며, 독자는 항상 변화하는 시를 마주한다.</p>
+              <p>시집에 실린 작품들은 삶의 주변부를 포착한다. 작은 사건들, 사라진 감정, 문턱에 남은 하루, 잊힌 풍경과 변화의 숨결이 소박하고 명료한 언어에 실린다. 해설은 "이 시집을 읽는 일은 지나가는 것들을 붙잡기보다는, 머무른 자리에 잠시 시선을 두고 고요히 내버려두는 일"이라고 명명한다.</p>
+              <p class="sijib-intro__note">정형화되지 않은 시와 형태를 매개로, 『신선한 시 있어요』는 유연하게 변화하는 감각과 경험의 접점이 된다.</p>
+            </div>
+            <!-- 영문 -->
+            <div class="sijib-intro__lang" data-intro-en hidden>
+              <p>『신선한 시 있어요』 — <em>For Sale: Fresh Poems</em> — is not a finished object. This book is a living manuscript, an ever-evolving record. Every copy is printed and bound by the poet herself. Each one carries the traces of that particular moment: her condition, her hands, her choices. Because of this, no two books are alike in feel, structure, or finish.</p>
+              <p>The boundaries of materiality remain open. This book refuses uniform reproduction and rapid production. Instead, it chooses a radically inefficient, non-standardized, slow handcraft. At the same time, readers can access the most current version of the poems online, updated in real time. Analog sensibility and digital accessibility coexist — the reader always encounters a changing poem.</p>
+              <p>The poems in this collection capture the periphery of daily life: small incidents, vanished emotions, a day left at the threshold, forgotten landscapes, and the breath of change — all carried in plain, clear language. The afterword describes reading this collection as 'not an act of grasping what passes, but of quietly resting one's gaze on the place where something has stayed, and letting it be.'</p>
+              <p class="sijib-intro__note">Through unstructured poems and form, <em>For Sale: Fresh Poems</em> becomes a fluid intersection of shifting sensation and experience.</p>
+            </div>
+          </div>
+          <button class="sijib-intro__lang-btn" id="sijibLangBtn" aria-label="영문으로 보기">ENG</button>
         </div>
-        <div class="work-card__info">
-          <h2 class="work-card__title">시집 제목</h2>
-          <p class="work-card__meta">시집 · 독립출판</p>
-        </div>
-      </article>
+      </div>
+
+      <div class="archive-header">
+        <h3 class="archive-header__title">판본 아카이브</h3>
+        <p class="archive-header__desc">초판부터 현재까지 — 각 판은 유일한 책입니다</p>
+      </div>
+
+      <!-- 판본 갤러리 -->
+      <div class="editions-grid" id="editionsGrid">
+          <article class="edition-card" data-edition="16" data-open-edetail="16" role="button" tabindex="0" aria-label="16판 상세 보기">
+            <div class="edition-card__cover">
+              <!--
+                📸 표지 사진 추가 방법:
+                이 div를 아래 img 태그로 교체하세요:
+                <img src="images/16pan.jpg" alt="16판 1쇄 표지"
+                     width="400" height="533" loading="lazy" class="edition-card__img">
+              -->
+              <div class="edition-cover">
+                <span class="edition-cover__num">16판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">16판 1쇄</p>
+              <ul class="edition-specs">
+                <li><span class="spec-k">발행일</span><span class="spec-v">2025.12.19</span></li>
+                <li><span class="spec-k">수록 시편</span><span class="spec-v">62편</span></li>
+                <li><span class="spec-k">내지 종이</span><span class="spec-v">사탕수수재생용지, 미색모조지</span></li>
+                <li><span class="spec-k">특징</span><span class="spec-v">부록 수록본, 시 커버 페이지 포함본 랜덤 드롭</span></li>
+                <li><span class="spec-k">해설</span><span class="spec-v">vol.6</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="15" data-open-edetail="15" role="button" tabindex="0" aria-label="15판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">15판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">15판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="14" data-open-edetail="14" role="button" tabindex="0" aria-label="14판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">14판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">14판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="13" data-open-edetail="13" role="button" tabindex="0" aria-label="13판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">13판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">13판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="12" data-open-edetail="12" role="button" tabindex="0" aria-label="12판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">12판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">12판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="11" data-open-edetail="11" role="button" tabindex="0" aria-label="11판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">11판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">11판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="10" data-open-edetail="10" role="button" tabindex="0" aria-label="10판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">10판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">10판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="9" data-open-edetail="9" role="button" tabindex="0" aria-label="9판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">9판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">9판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="8" data-open-edetail="8" role="button" tabindex="0" aria-label="8판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">8판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">8판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="7" data-open-edetail="7" role="button" tabindex="0" aria-label="7판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">7판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">7판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="6" data-open-edetail="6" role="button" tabindex="0" aria-label="6판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">6판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">6판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="5" data-open-edetail="5" role="button" tabindex="0" aria-label="5판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">5판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">5판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="4" data-open-edetail="4" role="button" tabindex="0" aria-label="4판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">4판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">4판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="3" data-open-edetail="3" role="button" tabindex="0" aria-label="3판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">3판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">3판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card edition-card--upcoming" data-edition="2" data-open-edetail="2" role="button" tabindex="0" aria-label="2판 상세 보기">
+            <div class="edition-card__cover">
+              <div class="edition-cover edition-cover--dim">
+                <span class="edition-cover__num">2판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">2판</p>
+              <p class="edition-card__status">준비 중</p>
+            </div>
+          </article>
+          <article class="edition-card" data-edition="1" data-open-edetail="1" role="button" tabindex="0" aria-label="초판 상세 보기">
+            <div class="edition-card__cover">
+              <!--
+                📸 표지 사진 추가 방법:
+                이 div를 아래 img 태그로 교체하세요:
+                <img src="images/1pan.jpg" alt="초판 1쇄 표지"
+                     width="400" height="533" loading="lazy" class="edition-card__img">
+              -->
+              <div class="edition-cover">
+                <span class="edition-cover__num">초판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+            <div class="edition-card__info">
+              <p class="edition-card__name">초판 1쇄</p>
+              <ul class="edition-specs">
+                <li><span class="spec-k">발행일</span><span class="spec-v">2024.12.03</span></li>
+                <li><span class="spec-k">수록 시편</span><span class="spec-v">38편</span></li>
+                <li><span class="spec-k">내지 종이</span><span class="spec-v">A4용지</span></li>
+                <li><span class="spec-k">특징</span><span class="spec-v">MS워드로 편집</span></li>
+                <li><span class="spec-k">해설</span><span class="spec-v">vol.1</span></li>
+                <li><span class="spec-k">발행부수</span><span class="spec-v">1부</span></li>
+              </ul>
+            </div>
+          </article>
+      </div>
+
+    </div><!-- /.sijib-section -->
+
+    <!-- 기타 카테고리 카드 (poem 필터에서는 숨김) -->
+    <div class="works-grid works-others" id="worksOthers">
       <article class="work-card" data-category="essay">
         <div class="work-card__img">
           <div class="work-card__placeholder"><span>에세이</span></div>
@@ -534,16 +1118,8 @@
           <p class="work-card__meta">그래픽 디자인</p>
         </div>
       </article>
-      <article class="work-card" data-category="poem">
-        <div class="work-card__img">
-          <div class="work-card__placeholder"><span>시집 2</span></div>
-        </div>
-        <div class="work-card__info">
-          <h2 class="work-card__title">시집 제목 2</h2>
-          <p class="work-card__meta">시집 · 독립출판</p>
-        </div>
-      </article>
     </div>
+
   </div>
   <footer class="site-footer container">
     <span class="site-footer__name">김민 · 다운</span>
@@ -880,11 +1456,23 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const f=btn.dataset.filter;
-    document.querySelectorAll('.work-card').forEach(c=>{
-      c.style.display=(f==='all'||c.dataset.category===f)?'':'none';
-    });
+    const worksSection=document.getElementById('works');
+    // data attribute로 CSS 필터 제어
+    worksSection.setAttribute('data-works-filter', f);
+    // others 그리드 카드 개별 표시/숨김
+    if(f==='all'){
+      document.querySelectorAll('.work-card').forEach(c=>c.style.display='');
+    } else if(f==='poem'){
+      document.querySelectorAll('.work-card').forEach(c=>c.style.display='none');
+    } else {
+      document.querySelectorAll('.work-card').forEach(c=>{
+        c.style.display=(c.dataset.category===f)?'':'none';
+      });
+    }
   });
 });
+// 초기 상태
+document.getElementById('works')?.setAttribute('data-works-filter','all');
 
 /* ───────────────────────────────────────────
    모바일 메뉴
@@ -919,6 +1507,783 @@ function setHomeHeight(){
 }
 setHomeHeight();
 window.addEventListener('resize', setHomeHeight);
+
+/* ─── 시집 소개 한/영 토글 ─── */
+(function(){
+  const btn = document.getElementById('sijibLangBtn');
+  if (!btn) return;
+  const ko = document.querySelector('[data-intro-ko]');
+  const en = document.querySelector('[data-intro-en]');
+  let isEn = false;
+  btn.addEventListener('click', () => {
+    isEn = !isEn;
+    ko.hidden = isEn;
+    en.hidden = !isEn;
+    btn.textContent = isEn ? 'KOR' : 'ENG';
+    btn.classList.toggle('is-en', isEn);
+  });
+})();
+
+/* ─── 판본 상세 모달 ─── */
+(function(){
+  function openDetail(n) {
+    const el = document.getElementById('edetail-' + n);
+    if (!el) return;
+    el.hidden = false;
+    document.body.style.overflow = 'hidden';
+    el.querySelector('.edetail__close')?.focus();
+  }
+  function closeDetail(el) {
+    if (!el) return;
+    el.hidden = true;
+    document.body.style.overflow = '';
+  }
+  // 판본 카드 클릭
+  document.querySelectorAll('[data-open-edetail]').forEach(card => {
+    card.addEventListener('click', () => openDetail(card.dataset.openEdetail));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(card.dataset.openEdetail); }});
+  });
+  // 닫기 버튼 / 오버레이
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-close-edetail]')) {
+      const panel = e.target.closest('.edition-detail');
+      closeDetail(panel);
+    }
+  });
+  // ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.edition-detail:not([hidden])').forEach(el => closeDetail(el));
+    }
+  });
+  // 각 모달 내 한/영 토글
+  document.querySelectorAll('.edetail__lang-btn[data-lang-toggle]').forEach(btn => {
+    let isEn = false;
+    const desc = btn.closest('.edetail__desc');
+    const koEl = desc?.querySelector('[data-ko]');
+    const enEl = desc?.querySelector('[data-en]');
+    btn.addEventListener('click', () => {
+      isEn = !isEn;
+      if (koEl) koEl.hidden = isEn;
+      if (enEl) enEl.hidden = !isEn;
+      btn.textContent = isEn ? 'KOR' : 'ENG';
+      btn.classList.toggle('is-en', isEn);
+    });
+  });
+})();
 </script>
+
+  <!-- 판본 상세 모달: 16판 -->
+  <div class="edition-detail" id="edetail-16" role="dialog" aria-modal="true" aria-label="16판 1쇄 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: 표지 사진 미등록 — images/16pan.jpg 로 추가 가능
+                <img src="images/16pan.jpg" alt="16판 1쇄 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover">
+                <span class="edition-cover__num">16판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">16판 1쇄</h2>
+              
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li><span class="spec-k">발행일</span><span class="spec-v">2025.12.19</span></li>
+              <li><span class="spec-k">수록 시편</span><span class="spec-v">62편</span></li>
+              <li><span class="spec-k">내지 종이</span><span class="spec-v">사탕수수재생용지, 미색모조지</span></li>
+              <li><span class="spec-k">특징</span><span class="spec-v">부록 수록본, 시 커버 페이지 포함본 랜덤 드롭</span></li>
+              <li><span class="spec-k">해설</span><span class="spec-v">vol.6</span></li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>16판은 시집이 처음 태어난 지 정확히 1년이 지난 날 발행되었다. 62편의 시와 여섯 번째 해설을 담았다. 사탕수수재생용지와 미색모조지를 내지로 사용해 손에 닿는 감각이 한층 달라졌다. 이번 판에는 부록을 별도 수록했고, 시 커버 페이지 포함본을 랜덤으로 드롭했다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>The 16th edition was issued exactly one year after the book first came into being. It contains 62 poems and the sixth critical essay. Using sugarcane recycled paper and off-white drawing paper for the inner pages, the tactile sensation has become distinctly different. This edition includes a separately bound appendix, with copies containing a poem cover page distributed at random.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 15판 -->
+  <div class="edition-detail" id="edetail-15" role="dialog" aria-modal="true" aria-label="15판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/15pan.jpg 로 추가 가능
+                <img src="images/15pan.jpg" alt="15판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">15판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">15판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>15판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 15th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 14판 -->
+  <div class="edition-detail" id="edetail-14" role="dialog" aria-modal="true" aria-label="14판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/14pan.jpg 로 추가 가능
+                <img src="images/14pan.jpg" alt="14판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">14판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">14판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>14판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 14th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 13판 -->
+  <div class="edition-detail" id="edetail-13" role="dialog" aria-modal="true" aria-label="13판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/13pan.jpg 로 추가 가능
+                <img src="images/13pan.jpg" alt="13판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">13판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">13판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>13판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 13th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 12판 -->
+  <div class="edition-detail" id="edetail-12" role="dialog" aria-modal="true" aria-label="12판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/12pan.jpg 로 추가 가능
+                <img src="images/12pan.jpg" alt="12판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">12판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">12판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>12판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 12th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 11판 -->
+  <div class="edition-detail" id="edetail-11" role="dialog" aria-modal="true" aria-label="11판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/11pan.jpg 로 추가 가능
+                <img src="images/11pan.jpg" alt="11판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">11판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">11판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>11판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 11th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 10판 -->
+  <div class="edition-detail" id="edetail-10" role="dialog" aria-modal="true" aria-label="10판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/10pan.jpg 로 추가 가능
+                <img src="images/10pan.jpg" alt="10판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">10판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">10판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>10판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 10th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 9판 -->
+  <div class="edition-detail" id="edetail-9" role="dialog" aria-modal="true" aria-label="9판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/9pan.jpg 로 추가 가능
+                <img src="images/9pan.jpg" alt="9판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">9판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">9판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>9판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 9th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 8판 -->
+  <div class="edition-detail" id="edetail-8" role="dialog" aria-modal="true" aria-label="8판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/8pan.jpg 로 추가 가능
+                <img src="images/8pan.jpg" alt="8판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">8판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">8판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>8판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 8th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 7판 -->
+  <div class="edition-detail" id="edetail-7" role="dialog" aria-modal="true" aria-label="7판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/7pan.jpg 로 추가 가능
+                <img src="images/7pan.jpg" alt="7판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">7판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">7판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>7판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 7th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 6판 -->
+  <div class="edition-detail" id="edetail-6" role="dialog" aria-modal="true" aria-label="6판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/6pan.jpg 로 추가 가능
+                <img src="images/6pan.jpg" alt="6판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">6판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">6판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>6판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 6th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 5판 -->
+  <div class="edition-detail" id="edetail-5" role="dialog" aria-modal="true" aria-label="5판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/5pan.jpg 로 추가 가능
+                <img src="images/5pan.jpg" alt="5판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">5판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">5판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>5판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 5th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 4판 -->
+  <div class="edition-detail" id="edetail-4" role="dialog" aria-modal="true" aria-label="4판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/4pan.jpg 로 추가 가능
+                <img src="images/4pan.jpg" alt="4판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">4판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">4판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>4판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 4th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 3판 -->
+  <div class="edition-detail" id="edetail-3" role="dialog" aria-modal="true" aria-label="3판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/3pan.jpg 로 추가 가능
+                <img src="images/3pan.jpg" alt="3판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">3판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">3판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>3판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 3th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 2판 -->
+  <div class="edition-detail" id="edetail-2" role="dialog" aria-modal="true" aria-label="2판 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: images/2pan.jpg 로 추가 가능
+                <img src="images/2pan.jpg" alt="2판 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover  edition-cover--dim">
+                <span class="edition-cover__num">2판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">2판</h2>
+              <span class="edetail__placeholder-badge">기록 준비 중</span>
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li class="spec-placeholder">기록 준비 중</li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>2판에 관한 기록이 곧 채워집니다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>Notes on the 2th edition coming soon.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 판본 상세 모달: 1판 -->
+  <div class="edition-detail" id="edetail-1" role="dialog" aria-modal="true" aria-label="초판 1쇄 상세" hidden>
+    <div class="edetail__overlay" data-close-edetail></div>
+    <div class="edetail__panel">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="edetail__inner">
+        <div class="edetail__cover">
+              <!--
+                📸 표지 사진 추가 방법: 표지 사진 미등록 — images/chodan.jpg 로 추가 가능
+                <img src="images/1pan.jpg" alt="초판 1쇄 표지"
+                     width="400" height="533" loading="lazy" class="edetail__cover-img">
+              -->
+              <div class="edition-cover">
+                <span class="edition-cover__num">초판</span>
+                <span class="edition-cover__title">신선한<br>시 있어요</span>
+                <span class="edition-cover__byline">by 다운</span>
+              </div>
+            </div>
+        <div class="edetail__info">
+          <div class="edetail__header">
+            <div class="edetail__title-row">
+              <h2 class="edetail__title">초판 1쇄</h2>
+              
+            </div>
+            <p class="edetail__book-title">『신선한 시 있어요』</p>
+          </div>
+          <ul class="edetail__specs edition-specs">
+            <li><span class="spec-k">발행일</span><span class="spec-v">2024.12.03</span></li>
+              <li><span class="spec-k">수록 시편</span><span class="spec-v">38편</span></li>
+              <li><span class="spec-k">내지 종이</span><span class="spec-v">A4용지</span></li>
+              <li><span class="spec-k">특징</span><span class="spec-v">MS워드로 편집, 발행부수 1부</span></li>
+              <li><span class="spec-k">해설</span><span class="spec-v">vol.1</span></li>
+          </ul>
+          <div class="edetail__desc" data-lang="ko">
+            <div class="edetail__desc-body" data-ko>
+              <p>초판은 단 한 권을 위해 만들어졌다. MS워드로 편집하고 A4용지에 인쇄한 이 책은, 시집이라는 형태가 가질 수 있는 가장 초보적인 면모를 갖는다. 38편의 시와 첫 번째 해설을 담았다. 이 한 권이 이후 모든 판본의 씨앗이 됐다.</p>
+            </div>
+            <div class="edetail__desc-body" data-en hidden>
+              <p>The first edition was made for just one copy. Edited in MS Word and printed on A4 paper, this book carries the most rudimentary form a poetry collection can take. It contains 38 poems and the first critical essay. This single copy became the seed of every edition that followed.</p>
+            </div>
+            <button class="edetail__lang-btn" data-lang-toggle aria-label="영문으로 보기">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
