@@ -114,6 +114,25 @@
       position:absolute; top:var(--space-6); right:var(--space-8);
       font-size:var(--text-xl); color:rgba(255,255,255,.35);
     }
+    /* 전역 언어 토글 버튼 */
+    .nav-lang-btn {
+      font-size: var(--text-xs);
+      font-family: var(--font-body);
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius-sm);
+      padding: 3px var(--space-3);
+      transition: color var(--transition), border-color var(--transition);
+      background: none;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    .nav-lang-btn:hover,
+    .nav-lang-btn.is-en {
+      color: #fff;
+      border-color: rgba(255,255,255,0.45);
+    }
     @media (max-width:640px) {
       .nav__links { display:none; }
       .nav__hamburger { display:flex; }
@@ -719,6 +738,7 @@
       </div>
     </li>
   </ul>
+  <button class="nav-lang-btn" id="globalLangBtn" aria-label="언어 전환">KO</button>
   <button class="nav__hamburger" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -823,13 +843,13 @@
     </header>
 
     <!-- ══════════ 시집 섹션 ══════════ -->
-    <div class="works-filter" role="group" aria-label="카테고리 필터">
-      <button class="filter-btn active" data-filter="all">전체</button>
-      <button class="filter-btn" data-filter="poem">시집</button>
-      <button class="filter-btn" data-filter="essay">에세이</button>
-      <button class="filter-btn" data-filter="photo">사진</button>
-      <button class="filter-btn" data-filter="design">디자인</button>
-    </div>
+    <div class="works-filter" role="group" aria-label="작품 필터">
+  <button class="filter-btn active" data-filter="all"><span data-ko>전체</span><span data-en hidden>All</span></button>
+  <button class="filter-btn" data-filter="poem"><span data-ko>시집</span><span data-en hidden>Poetry</span></button>
+  <button class="filter-btn" data-filter="essay"><span data-ko>에세이</span><span data-en hidden>Essay</span></button>
+  <button class="filter-btn" data-filter="photo"><span data-ko>사진</span><span data-en hidden>Photo</span></button>
+  <button class="filter-btn" data-filter="design"><span data-ko>디자인</span><span data-en hidden>Design</span></button>
+</div>
 
     <!-- 시집 상세 섹션 (filter=poem 또는 all일 때 보임) -->
     <div class="sijib-section" id="sijibSection" data-category="poem">
@@ -1420,7 +1440,8 @@ updateScenes();
 /* ───────────────────────────────────────────
    페이지 전환
 ─────────────────────────────────────────── */
-function showPage(id){
+  applyGlobalLang(); // 초기 언어 상태 적용 (기본값: 한국어)
+  function showPage(id){
   if(id==='home'){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     homeEl.style.display='';
@@ -1558,21 +1579,85 @@ setHomeHeight();
 window.addEventListener('resize', setHomeHeight);
 
 /* ─── 시집 소개 한/영 토글 ─── */
-(function(){
-  const btn = document.getElementById('sijibLangBtn');
-  if (!btn) return;
-  const ko = document.querySelector('[data-intro-ko]');
-  const en = document.querySelector('[data-intro-en]');
-  let isEn = false;
-  btn.addEventListener('click', () => {
-    isEn = !isEn;
-    ko.hidden = isEn;
-    en.hidden = !isEn;
-    btn.textContent = isEn ? 'KOR' : 'ENG';
-    btn.classList.toggle('is-en', isEn);
-  });
-})();
+  // ── 전역 언어 토글 ──────────────────────────────────────────
+   function applyGlobalLang() {
+    const lang = isEn ? 'en' : 'ko';
+    // <html lang> 변경
+    document.documentElement.lang = isEn ? 'en' : 'ko';
+    // data-ko / data-en span 전환
+    document.querySelectorAll('[data-ko]').forEach(el => { el.hidden = isEn; });
+    document.querySelectorAll('[data-en]').forEach(el => { el.hidden = !isEn; });
+    // 전역 버튼 텍스트
+    const globalBtn = document.getElementById('globalLangBtn');
+    if (globalBtn) {
+      globalBtn.textContent = isEn ? 'KO' : 'EN';
+      globalBtn.classList.toggle('is-en', isEn);
+      globalBtn.setAttribute('aria-label', isEn ? 'Switch to Korean' : '한국어로 전환');
+    }
+    // sijib 소개 섹션 (data-intro-ko / data-intro-en)
+    const introKo = document.querySelector('[data-intro-ko]');
+    const introEn = document.querySelector('[data-intro-en]');
+    if (introKo) introKo.hidden = isEn;
+    if (introEn) introEn.hidden = !isEn;
+    // sijib 소개 내 ENG/KOR 버튼 동기화
+    const sijibBtn = document.getElementById('sijibLangBtn');
+    if (sijibBtn) {
+      sijibBtn.textContent = isEn ? 'KOR' : 'ENG';
+      sijibBtn.classList.toggle('is-en', isEn);
+    }
+    // edition detail 언어 버튼 동기화
+    document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => {
+      const desc = btn.closest('.edetail-desc');
+      if (!desc) return;
+      const koEl = desc.querySelector('[data-ko]');
+      const enEl = desc.querySelector('[data-en]');
+      if (koEl) koEl.hidden = isEn;
+      if (enEl) enEl.hidden = !isEn;
+      btn.textContent = isEn ? 'KOR' : 'ENG';
+      btn.classList.toggle('is-en', isEn);
+    });
+    // navLogo aria-label 변경
+    const navLogoEl2 = document.getElementById('navLogo');
+    if (navLogoEl2) {
+      navLogoEl2.setAttribute('aria-label', isEn ? 'Go to home' : '홈으로');
+      navLogoEl2.setAttribute('data-label-ko', '홈으로');
+    }
+    // 모달 닫기 버튼 aria-label
+    const modalCloseBtn = document.getElementById('modalClose');
+    if (modalCloseBtn) {
+      modalCloseBtn.setAttribute('aria-label', isEn ? 'Close' : '닫기');
+    }
+    // 모바일 메뉴 닫기 버튼 aria-label
+    const mobileCloseBtn = document.getElementById('menuClose');
+    if (mobileCloseBtn) {
+      mobileCloseBtn.setAttribute('aria-label', isEn ? 'Close' : '닫기');
+    }
+    // openModal에서 단어 설명 언어 분기 (현재 열린 모달 갱신)
+    const modalDescEl = document.getElementById('modalDesc');
+    const modalWordEl = document.getElementById('modalWord');
+    if (modalDescEl && modalWordEl && modalWordEl.textContent) {
+      const w = modalWordEl.textContent;
+      const desc2 = isEn ? (WORD_DESCRIPTIONS_EN[w] || 'Coming soon.') : (WORD_DESCRIPTIONS[w] || '.');
+      modalDescEl.textContent = desc2;
+    }
+  }
 
+  const globalLangBtn = document.getElementById('globalLangBtn');
+  if (globalLangBtn) {
+    globalLangBtn.addEventListener('click', () => {
+      isEn = !isEn;
+      applyGlobalLang();
+    });
+  }
+
+  // sijib 내부 ENG/KOR 버튼 → 전역 상태에 연동
+  const sijibLangBtnEl = document.getElementById('sijibLangBtn');
+  if (sijibLangBtnEl) {
+    sijibLangBtnEl.addEventListener('click', () => {
+      isEn = !isEn;
+      applyGlobalLang();
+    });
+  }
 /* ─── 판본 상세 모달 ─── */
 (function(){
   function openDetail(n) {
@@ -1605,20 +1690,13 @@ window.addEventListener('resize', setHomeHeight);
       document.querySelectorAll('.edition-detail:not([hidden])').forEach(el => closeDetail(el));
     }
   });
-  // 각 모달 내 한/영 토글
-  document.querySelectorAll('.edetail__lang-btn[data-lang-toggle]').forEach(btn => {
-    let isEn = false;
-    const desc = btn.closest('.edetail__desc');
-    const koEl = desc?.querySelector('[data-ko]');
-    const enEl = desc?.querySelector('[data-en]');
-    btn.addEventListener('click', () => {
-      isEn = !isEn;
-      if (koEl) koEl.hidden = isEn;
-      if (enEl) enEl.hidden = !isEn;
-      btn.textContent = isEn ? 'KOR' : 'ENG';
-      btn.classList.toggle('is-en', isEn);
-    });
+ // edetail 언어 버튼을 전역 토글에 연동
+document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    isEn = !isEn;
+    applyGlobalLang();
   });
+}); 
 })();
 </script>
 
