@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>김민 — nothing or everything</title>
-  <meta name="description" content="시인 김민(다운). nothing or everything — 아무것도 아니거나, 모든 것이거나." />
+  <title>김민 — nothing but everything</title>
+  <meta name="description" content="시인 김민(다운). nothing but everything — 아무것도 아닌, 그래서 무엇이든 될 수 있는." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
       --color-border:rgba(26,25,22,0.10);
     }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    html { -webkit-font-smoothing:antialiased; -behavior:smooth; }
+    html { -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
     body { font-family:var(--font-body); font-size:var(--text-base);
            color:var(--color-text); background:var(--color-bg); overflow-x:hidden; }
     img,picture { display:block; max-width:100%; }
@@ -114,25 +114,6 @@
       position:absolute; top:var(--space-6); right:var(--space-8);
       font-size:var(--text-xl); color:rgba(255,255,255,.35);
     }
-    /* 전역 언어 토글 버튼 */
-    .nav-lang-btn {
-      font-size: var(--text-xs);
-      font-family: var(--font-body);
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: var(--radius-sm);
-      padding: 3px var(--space-3);
-      transition: color var(--transition), border-color var(--transition);
-      background: none;
-      cursor: pointer;
-      pointer-events: auto;
-    }
-    .nav-lang-btn:hover,
-    .nav-lang-btn.is-en {
-      color: #fff;
-      border-color: rgba(255,255,255,0.45);
-    }
     @media (max-width:640px) {
       .nav__links { display:none; }
       .nav__hamburger { display:flex; }
@@ -190,23 +171,23 @@
     }
 
     /* 스크롤 힌트 */
-    .-hint {
+    .scroll-hint {
       position:fixed; bottom:var(--space-8); left:50%;
       transform:translateX(-50%); z-index:50;
       display:flex; flex-direction:column; align-items:center; gap:var(--space-2);
       opacity:1; transition:opacity .5s ease; mix-blend-mode:exclusion;
       pointer-events:none;
     }
-    .-hint.hidden { opacity:0; }
-    .-hint__line {
+    .scroll-hint.hidden { opacity:0; }
+    .scroll-hint__line {
       width:1px; height:36px; background:rgba(255,255,255,.4);
-      animation:Line 1.8s ease-in-out infinite;
+      animation:scrollLine 1.8s ease-in-out infinite;
     }
-    .-hint__text {
+    .scroll-hint__text {
       font-size:9px; letter-spacing:.24em;
       color:rgba(255,255,255,.3); text-transform:uppercase;
     }
-    @keyframes Line {
+    @keyframes scrollLine {
       0%,100% { transform:scaleY(0) translateY(0); transform-origin:top; opacity:0; }
       30%,70% { opacity:1; }
       100%     { transform:scaleY(1) translateY(0); transform-origin:top; }
@@ -496,9 +477,9 @@
     #words { background:var(--color-bg); padding-bottom:var(--space-24); }
     .words-tabs {
       display:flex; border-bottom:1px solid var(--color-border);
-      margin-bottom:var(--space-12); overflow-x:auto; bar-width:none;
+      margin-bottom:var(--space-12); overflow-x:auto; scrollbar-width:none;
     }
-    .words-tabs::-webkit-bar { display:none; }
+    .words-tabs::-webkit-scrollbar { display:none; }
     .words-tab {
       font-family:var(--font-display); font-size:var(--text-sm); font-weight:300;
       letter-spacing:.06em; padding:var(--space-3) var(--space-6);
@@ -639,7 +620,7 @@
       background: var(--color-bg);
       border-radius: var(--radius-xl);
       padding: var(--space-8) var(--space-8) var(--space-10);
-      -webkit-overflow-ing: touch;
+      -webkit-overflow-scrolling: touch;
     }
     .edetail__close {
       position: absolute;
@@ -724,7 +705,7 @@
 
 <!-- NAV -->
 <nav class="nav" aria-label="주요 메뉴">
-  <button class="nav__logo" id="navLogo" aria-label="홈으로" data-label-ko="홈으로" data-label-en="Go to home">김민</button>
+  <button class="nav__logo" id="navLogo" aria-label="홈으로">김민</button>
   <ul class="nav__links" role="list">
     <li><a href="#" id="navYeonbo">연보</a></li>
     <li><a href="#" id="navWorks">WORKS</a></li>
@@ -738,7 +719,6 @@
       </div>
     </li>
   </ul>
-  <button class="nav-lang-btn" id="globalLangBtn" aria-label="언어 전환">KO</button>
   <button class="nav__hamburger" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -746,7 +726,7 @@
 
 <!-- 모바일 메뉴 -->
 <div class="nav__mobile-menu" id="mobileMenu" role="dialog" aria-label="메뉴">
-  <button class="nav__mobile-close" id="menuClose" aria-label="닫기" data-label-ko="닫기" data-label-en="Close">×</button>
+  <button class="nav__mobile-close" id="menuClose" aria-label="닫기">×</button>
   <a href="#" data-nav="yeonbo">연보</a>
   <a href="#" data-nav="works">WORKS</a>
   <a href="#" data-nav="words">단어들</a>
@@ -767,12 +747,9 @@
 
 <div class="scroll-hint" id="scrollHint" aria-hidden="true">
   <div class="scroll-hint__line"></div>
-  <span class="scroll-hint__text">
-    <span data-ko>스크롤</span>
-    <span data-en hidden>SCROLL</span>
-  </span>
+  <span class="scroll-hint__text">scroll</span>
 </div>
-  
+
 <!-- 연보 -->
 <section class="page" id="yeonbo" aria-label="연보">
   <div class="container--narrow">
@@ -843,13 +820,13 @@
     </header>
 
     <!-- ══════════ 시집 섹션 ══════════ -->
-    <div class="works-filter" role="group" aria-label="작품 필터">
-  <button class="filter-btn active" data-filter="all"><span data-ko>전체</span><span data-en hidden>All</span></button>
-  <button class="filter-btn" data-filter="poem"><span data-ko>시집</span><span data-en hidden>Poetry</span></button>
-  <button class="filter-btn" data-filter="essay"><span data-ko>에세이</span><span data-en hidden>Essay</span></button>
-  <button class="filter-btn" data-filter="photo"><span data-ko>사진</span><span data-en hidden>Photo</span></button>
-  <button class="filter-btn" data-filter="design"><span data-ko>디자인</span><span data-en hidden>Design</span></button>
-</div>
+    <div class="works-filter" role="group" aria-label="카테고리 필터">
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="poem">시집</button>
+      <button class="filter-btn" data-filter="essay">에세이</button>
+      <button class="filter-btn" data-filter="photo">사진</button>
+      <button class="filter-btn" data-filter="design">디자인</button>
+    </div>
 
     <!-- 시집 상세 섹션 (filter=poem 또는 all일 때 보임) -->
     <div class="sijib-section" id="sijibSection" data-category="poem">
@@ -884,9 +861,7 @@
 
       <div class="archive-header">
         <h3 class="archive-header__title">판본 아카이브</h3>
-        <p class="archive-header__desc">
-  <span data-ko>초판부터 현재까지 — 각 판은 유일한 책입니다</span><span data-en hidden>From the first to the present — each edition is a unique book</span>
-</p>
+        <p class="archive-header__desc">초판부터 현재까지 — 각 판은 유일한 책입니다</p>
       </div>
 
       <!-- 판본 갤러리 -->
@@ -906,9 +881,7 @@
               </div>
             </div>
             <div class="edition-card__info">
-              <p class="edition-card__name">
-  <span data-ko>16판 1쇄</span><span data-en hidden>16th Edition, 1st Printing</span>
-</p>
+              <p class="edition-card__name">16판 1쇄</p>
               <ul class="edition-specs">
                 <li><span class="spec-k">발행일</span><span class="spec-v">2025.12.19</span></li>
                 <li><span class="spec-k">수록 시편</span><span class="spec-v">62편</span></li>
@@ -927,8 +900,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">15판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="14" data-open-edetail="14" role="button" tabindex="0" aria-label="14판 상세 보기">
@@ -940,8 +912,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">14판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="13" data-open-edetail="13" role="button" tabindex="0" aria-label="13판 상세 보기">
@@ -953,8 +924,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">13판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="12" data-open-edetail="12" role="button" tabindex="0" aria-label="12판 상세 보기">
@@ -966,8 +936,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">12판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="11" data-open-edetail="11" role="button" tabindex="0" aria-label="11판 상세 보기">
@@ -979,8 +948,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">11판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="10" data-open-edetail="10" role="button" tabindex="0" aria-label="10판 상세 보기">
@@ -992,8 +960,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">10판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="9" data-open-edetail="9" role="button" tabindex="0" aria-label="9판 상세 보기">
@@ -1005,8 +972,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">9판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="8" data-open-edetail="8" role="button" tabindex="0" aria-label="8판 상세 보기">
@@ -1018,8 +984,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">8판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="7" data-open-edetail="7" role="button" tabindex="0" aria-label="7판 상세 보기">
@@ -1031,8 +996,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">7판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="6" data-open-edetail="6" role="button" tabindex="0" aria-label="6판 상세 보기">
@@ -1044,8 +1008,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">6판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="5" data-open-edetail="5" role="button" tabindex="0" aria-label="5판 상세 보기">
@@ -1057,8 +1020,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">5판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="4" data-open-edetail="4" role="button" tabindex="0" aria-label="4판 상세 보기">
@@ -1070,8 +1032,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">4판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="3" data-open-edetail="3" role="button" tabindex="0" aria-label="3판 상세 보기">
@@ -1083,8 +1044,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">3판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card edition-card--upcoming" data-edition="2" data-open-edetail="2" role="button" tabindex="0" aria-label="2판 상세 보기">
@@ -1096,8 +1056,7 @@
             </div>
             <div class="edition-card__info">
               <p class="edition-card__name">2판</p>
-              <p class="edition-card__status"><span data-ko>준비 중</span><span data-en hidden>Coming soon</span>
-              </p>
+              <p class="edition-card__status">준비 중</p>
             </div>
           </article>
           <article class="edition-card" data-edition="1" data-open-edetail="1" role="button" tabindex="0" aria-label="초판 상세 보기">
@@ -1137,9 +1096,7 @@
           <div class="work-card__placeholder"><span>에세이</span></div>
         </div>
         <div class="work-card__info">
-          <h2 class="work-card__title">
-  <span data-ko>ADHD 다능인의 취미편력기</span><span data-en hidden>A Multipotentialite with ADHD: A Hobby Odyssey</span>
-</h2>
+          <h2 class="work-card__title">ADHD 다능인의 취미편력기</h2>
           <p class="work-card__meta">에세이 · 출간 예정</p>
         </div>
       </article>
@@ -1148,9 +1105,7 @@
           <div class="work-card__placeholder"><span>사진</span></div>
         </div>
         <div class="work-card__info">
-          <h2 class="work-card__title">
-  <span data-ko>필름 사진</span><span data-en hidden>Film Photography</span>
-</h2>
+          <h2 class="work-card__title">필름 사진</h2>
           <p class="work-card__meta">사진</p>
         </div>
       </article>
@@ -1159,9 +1114,7 @@
           <div class="work-card__placeholder"><span>디자인</span></div>
         </div>
         <div class="work-card__info">
-          <h2 class="work-card__title">
-  <span data-ko>포스터 / 포스트카드</span><span data-en hidden>Poster / Postcard</span>
-</h2>
+          <h2 class="work-card__title">포스터 / 포스트카드</h2>
           <p class="work-card__meta">그래픽 디자인</p>
         </div>
       </article>
@@ -1182,17 +1135,13 @@
 <section class="page" id="words" aria-label="단어들">
   <div class="container">
     <header class="page-header">
-      <h1><span data-ko>단어들</span><span data-en hidden>Words</span></h1>
+      <h1>단어들</h1>
     </header>
     <div class="words-tabs" role="tablist">
-      <button class="words-tab active" role="tab" data-tab="keep" aria-selected="true"><span data-ko>간직할</span><span data-en hidden>Keep</span>
-      </button>
-      <button class="words-tab" role="tab" data-tab="long" aria-selected="false"><span data-ko>오래 머문</span><span data-en hidden>Long-stayed</span>
-      </button>
-      <button class="words-tab" role="tab" data-tab="close" aria-selected="false"><span data-ko>친한</span><span data-en hidden>Close</span>
-      </button>
-      <button class="words-tab" role="tab" data-tab="pass" aria-selected="false"><span data-ko>스쳐간</span><span data-en hidden>Passed</span>
-      </button>
+      <button class="words-tab active" role="tab" data-tab="keep" aria-selected="true">간직할</button>
+      <button class="words-tab" role="tab" data-tab="long" aria-selected="false">오래 머문</button>
+      <button class="words-tab" role="tab" data-tab="close" aria-selected="false">친한</button>
+      <button class="words-tab" role="tab" data-tab="pass" aria-selected="false">스쳐간</button>
     </div>
     <!-- 간직할 -->
     <div class="words-panel active" id="panel-keep" role="tabpanel">
@@ -1287,7 +1236,7 @@
 <!-- 단어 모달 -->
 <div class="word-modal" id="wordModal" role="dialog" aria-modal="true" aria-label="단어 설명">
   <div class="word-modal__inner">
-    <button class="word-modal__close" id="modalClose" aria-label="닫기" data-label-ko="닫기" data-label-en="Close">×</button>
+    <button class="word-modal__close" id="modalClose" aria-label="닫기">×</button>
     <p class="word-modal__word" id="modalWord"></p>
     <p class="word-modal__category" id="modalCat"></p>
     <p class="word-modal__desc" id="modalDesc"></p>
@@ -1295,7 +1244,6 @@
 </div>
 
 <script>
-  let isEn = false;
 /* ───────────────────────────────────────────
    ✏️ 단어 설명 — 나중에 여기를 채워주세요
 ─────────────────────────────────────────── */
@@ -1328,19 +1276,7 @@ const WORD_DESCRIPTIONS = {
   "두려움":   "아직 작성 중.",
   "포기":     "포기는 끝이 아니었다.\n다른 것의 시작이었다.",
 };
-const WORD_DESCRIPTIONS_EN = {
-  "고요": "Not the absence of sound, but the presence of a space where sound has settled.",
-  "서늘": "A coolness that arrives before you notice it. The temperature of a thought left unfinished.",
-  "틈": "The space between what is said and what is meant. Where truth slips through unintended.",
-  "정적": "Silence that remains after the noise has passed. Not emptiness, but the echo of what was.",
-  "흔적": "What lingers when the thing itself is gone. The shape of absence.",
-  "떠남": "Not moving away, but the act of letting go of where you were. A choice to become unreachable.",
-  "공백": "The unmarked space where meaning waits. Not empty, but unwritten.",
-  "낯섦": "The distance between familiar and recognizable. When something known becomes strange again.",
-  "어둠": "Not the lack of light, but the presence of what light cannot reach.",
-  "파장": "The pattern left by a disturbance after it passes. What carries forward without the source."
-};
-  
+
 /* ───────────────────────────────────────────
    ✏️ 홈 떠다니는 단어 목록
 ─────────────────────────────────────────── */
@@ -1357,7 +1293,7 @@ const FLOATING_WORDS = [
 ─────────────────────────────────────────── */
 const homeEl     = document.getElementById('home');
 const navLogoEl  = document.getElementById('navLogo');
-const Hint = document.getElementById('Hint');
+const scrollHint = document.getElementById('scrollHint');
 const scenes     = [
   document.getElementById('s1'),
   document.getElementById('s2'),
@@ -1369,13 +1305,13 @@ const N = scenes.length;
 function lerp(a,b,t){ return a+(b-a)*Math.max(0,Math.min(1,t)); }
 
 function updateScenes(){
-  const sy  = window.Y;
+  const sy  = window.scrollY;
   const vh  = window.innerHeight;
   const hh  = homeEl.offsetHeight;
   const onHome = sy < hh - 20;
 
   navLogoEl.classList.toggle('visible', !onHome);
-  Hint.classList.toggle('hidden', sy > vh * 0.3 || !onHome);
+  scrollHint.classList.toggle('hidden', sy > vh * 0.3 || !onHome);
 
   if(!onHome){ scenes.forEach(s=>s.style.opacity='1'); return; }
 
@@ -1394,7 +1330,7 @@ function updateScenes(){
     s.style.opacity = op;
   });
 }
-window.addEventListener('', updateScenes, {passive:true});
+window.addEventListener('scroll', updateScenes, {passive:true});
 updateScenes();
 
 /* ───────────────────────────────────────────
@@ -1441,21 +1377,20 @@ updateScenes();
 /* ───────────────────────────────────────────
    페이지 전환
 ─────────────────────────────────────────── */
-  applyGlobalLang(); // 초기 언어 상태 적용 (기본값: 한국어)
-  function showPage(id){
+function showPage(id){
   if(id==='home'){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     homeEl.style.display='';
-    Hint.style.display='';
-    window.To({top:0,behavior:'instant'});
+    scrollHint.style.display='';
+    window.scrollTo({top:0,behavior:'instant'});
     navLogoEl.classList.remove('visible');
   } else {
     homeEl.style.display='none';
-    Hint.style.display='none';
+    scrollHint.style.display='none';
     navLogoEl.classList.add('visible');
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     const t=document.getElementById(id);
-    if(t){ t.classList.add('active'); window.To({top:0,behavior:'instant'}); }
+    if(t){ t.classList.add('active'); window.scrollTo({top:0,behavior:'instant'}); }
   }
 }
 
@@ -1495,14 +1430,8 @@ document.querySelectorAll('.words-tab').forEach(t=>{
 ─────────────────────────────────────────── */
 function openModal(word,cat){
   document.getElementById('modalWord').textContent = word;
-  document.getElementById('modalCat').textContent = cat;
-  
-  // 언어에 따라 설명 선택
-  const desc = isEn 
-    ? (WORD_DESCRIPTIONS_EN[word] || 'Coming soon.') 
-    : (WORD_DESCRIPTIONS[word] || '아직 작성 중.');
-  
-  document.getElementById('modalDesc').textContent = desc;
+  document.getElementById('modalCat').textContent  = cat;
+  document.getElementById('modalDesc').textContent = WORD_DESCRIPTIONS[word] || '아직 작성 중.';
   document.getElementById('wordModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1580,85 +1509,21 @@ setHomeHeight();
 window.addEventListener('resize', setHomeHeight);
 
 /* ─── 시집 소개 한/영 토글 ─── */
-  // ── 전역 언어 토글 ──────────────────────────────────────────
-   function applyGlobalLang() {
-    const lang = isEn ? 'en' : 'ko';
-    // <html lang> 변경
-    document.documentElement.lang = isEn ? 'en' : 'ko';
-    // data-ko / data-en span 전환
-    document.querySelectorAll('[data-ko]').forEach(el => { el.hidden = isEn; });
-    document.querySelectorAll('[data-en]').forEach(el => { el.hidden = !isEn; });
-    // 전역 버튼 텍스트
-    const globalBtn = document.getElementById('globalLangBtn');
-    if (globalBtn) {
-      globalBtn.textContent = isEn ? 'KO' : 'EN';
-      globalBtn.classList.toggle('is-en', isEn);
-      globalBtn.setAttribute('aria-label', isEn ? 'Switch to Korean' : '한국어로 전환');
-    }
-    // sijib 소개 섹션 (data-intro-ko / data-intro-en)
-    const introKo = document.querySelector('[data-intro-ko]');
-    const introEn = document.querySelector('[data-intro-en]');
-    if (introKo) introKo.hidden = isEn;
-    if (introEn) introEn.hidden = !isEn;
-    // sijib 소개 내 ENG/KOR 버튼 동기화
-    const sijibBtn = document.getElementById('sijibLangBtn');
-    if (sijibBtn) {
-      sijibBtn.textContent = isEn ? 'KOR' : 'ENG';
-      sijibBtn.classList.toggle('is-en', isEn);
-    }
-    // edition detail 언어 버튼 동기화
-    document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => {
-      const desc = btn.closest('.edetail-desc');
-      if (!desc) return;
-      const koEl = desc.querySelector('[data-ko]');
-      const enEl = desc.querySelector('[data-en]');
-      if (koEl) koEl.hidden = isEn;
-      if (enEl) enEl.hidden = !isEn;
-      btn.textContent = isEn ? 'KOR' : 'ENG';
-      btn.classList.toggle('is-en', isEn);
-    });
-    // navLogo aria-label 변경
-    const navLogoEl2 = document.getElementById('navLogo');
-    if (navLogoEl2) {
-      navLogoEl2.setAttribute('aria-label', isEn ? 'Go to home' : '홈으로');
-      navLogoEl2.setAttribute('data-label-ko', '홈으로');
-    }
-    // 모달 닫기 버튼 aria-label
-    const modalCloseBtn = document.getElementById('modalClose');
-    if (modalCloseBtn) {
-      modalCloseBtn.setAttribute('aria-label', isEn ? 'Close' : '닫기');
-    }
-    // 모바일 메뉴 닫기 버튼 aria-label
-    const mobileCloseBtn = document.getElementById('menuClose');
-    if (mobileCloseBtn) {
-      mobileCloseBtn.setAttribute('aria-label', isEn ? 'Close' : '닫기');
-    }
-    // openModal에서 단어 설명 언어 분기 (현재 열린 모달 갱신)
-    const modalDescEl = document.getElementById('modalDesc');
-    const modalWordEl = document.getElementById('modalWord');
-    if (modalDescEl && modalWordEl && modalWordEl.textContent) {
-      const w = modalWordEl.textContent;
-      const desc2 = isEn ? (WORD_DESCRIPTIONS_EN[w] || 'Coming soon.') : (WORD_DESCRIPTIONS[w] || '.');
-      modalDescEl.textContent = desc2;
-    }
-  }
+(function(){
+  const btn = document.getElementById('sijibLangBtn');
+  if (!btn) return;
+  const ko = document.querySelector('[data-intro-ko]');
+  const en = document.querySelector('[data-intro-en]');
+  let isEn = false;
+  btn.addEventListener('click', () => {
+    isEn = !isEn;
+    ko.hidden = isEn;
+    en.hidden = !isEn;
+    btn.textContent = isEn ? 'KOR' : 'ENG';
+    btn.classList.toggle('is-en', isEn);
+  });
+})();
 
-  const globalLangBtn = document.getElementById('globalLangBtn');
-  if (globalLangBtn) {
-    globalLangBtn.addEventListener('click', () => {
-      isEn = !isEn;
-      applyGlobalLang();
-    });
-  }
-
-  // sijib 내부 ENG/KOR 버튼 → 전역 상태에 연동
-  const sijibLangBtnEl = document.getElementById('sijibLangBtn');
-  if (sijibLangBtnEl) {
-    sijibLangBtnEl.addEventListener('click', () => {
-      isEn = !isEn;
-      applyGlobalLang();
-    });
-  }
 /* ─── 판본 상세 모달 ─── */
 (function(){
   function openDetail(n) {
@@ -1691,13 +1556,20 @@ window.addEventListener('resize', setHomeHeight);
       document.querySelectorAll('.edition-detail:not([hidden])').forEach(el => closeDetail(el));
     }
   });
- // edetail 언어 버튼을 전역 토글에 연동
-document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    isEn = !isEn;
-    applyGlobalLang();
+  // 각 모달 내 한/영 토글
+  document.querySelectorAll('.edetail__lang-btn[data-lang-toggle]').forEach(btn => {
+    let isEn = false;
+    const desc = btn.closest('.edetail__desc');
+    const koEl = desc?.querySelector('[data-ko]');
+    const enEl = desc?.querySelector('[data-en]');
+    btn.addEventListener('click', () => {
+      isEn = !isEn;
+      if (koEl) koEl.hidden = isEn;
+      if (enEl) enEl.hidden = !isEn;
+      btn.textContent = isEn ? 'KOR' : 'ENG';
+      btn.classList.toggle('is-en', isEn);
+    });
   });
-}); 
 })();
 </script>
 
@@ -1705,7 +1577,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-16" role="dialog" aria-modal="true" aria-label="16판 1쇄 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -1753,7 +1625,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-15" role="dialog" aria-modal="true" aria-label="15판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -1797,7 +1669,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-14" role="dialog" aria-modal="true" aria-label="14판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -1841,7 +1713,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-13" role="dialog" aria-modal="true" aria-label="13판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -1885,7 +1757,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-12" role="dialog" aria-modal="true" aria-label="12판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -1929,7 +1801,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-11" role="dialog" aria-modal="true" aria-label="11판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -1973,7 +1845,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-10" role="dialog" aria-modal="true" aria-label="10판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2017,7 +1889,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-9" role="dialog" aria-modal="true" aria-label="9판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2061,7 +1933,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-8" role="dialog" aria-modal="true" aria-label="8판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2105,7 +1977,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-7" role="dialog" aria-modal="true" aria-label="7판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2149,7 +2021,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-6" role="dialog" aria-modal="true" aria-label="6판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2193,7 +2065,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-5" role="dialog" aria-modal="true" aria-label="5판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2237,7 +2109,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-4" role="dialog" aria-modal="true" aria-label="4판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2281,7 +2153,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-3" role="dialog" aria-modal="true" aria-label="3판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2325,7 +2197,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-2" role="dialog" aria-modal="true" aria-label="2판 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2369,7 +2241,7 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
   <div class="edition-detail" id="edetail-1" role="dialog" aria-modal="true" aria-label="초판 1쇄 상세" hidden>
     <div class="edetail__overlay" data-close-edetail></div>
     <div class="edetail__panel">
-      <button class="edetail__close" data-close-edetail aria-label="닫기" data-label-ko="닫기" data-label-en="Close">
+      <button class="edetail__close" data-close-edetail aria-label="닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <div class="edetail__inner">
@@ -2413,5 +2285,5 @@ document.querySelectorAll('.edetail-lang-btn[data-lang-toggle]').forEach(btn => 
       </div>
     </div>
   </div>
-</body>  
+</body>
 </html>
